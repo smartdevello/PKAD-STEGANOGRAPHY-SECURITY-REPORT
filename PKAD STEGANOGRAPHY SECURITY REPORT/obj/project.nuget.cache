@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "dgSpecHash": "b0+1a1RpQVlDtICRCJ2QPtk9QC9aexClZCToF6uhs4uhZ36GzxkmYAGJ4ddYHPb/WJsiQkc5h44zImDreyGw+g==",
+  "success": true,
+  "projectFilePath": "D:\\My Work\\2022\\3\\PKAD STEGANOGRAPHY SECURITY REPORT\\PKAD STEGANOGRAPHY SECURITY REPORT\\PKAD STEGANOGRAPHY SECURITY REPORT.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\smart\\.nuget\\packages\\dotnetcore.npoi\\1.2.3\\dotnetcore.npoi.1.2.3.nupkg.sha512",
+    "C:\\Users\\smart\\.nuget\\packages\\dotnetcore.npoi.core\\1.2.3\\dotnetcore.npoi.core.1.2.3.nupkg.sha512",
+    "C:\\Users\\smart\\.nuget\\packages\\dotnetcore.npoi.openxml4net\\1.2.3\\dotnetcore.npoi.openxml4net.1.2.3.nupkg.sha512",
+    "C:\\Users\\smart\\.nuget\\packages\\dotnetcore.npoi.openxmlformats\\1.2.3\\dotnetcore.npoi.openxmlformats.1.2.3.nupkg.sha512",
+    "C:\\Users\\smart\\.nuget\\packages\\microsoft.netcore.platforms\\2.0.0\\microsoft.netcore.platforms.2.0.0.nupkg.sha512",
+    "C:\\Users\\smart\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
+    "C:\\Users\\smart\\.nuget\\packages\\sharpziplib\\1.2.0\\sharpziplib.1.2.0.nupkg.sha512",
+    "C:\\Users\\smart\\.nuget\\packages\\system.drawing.common\\6.0.0\\system.drawing.common.6.0.0.nupkg.sha512",
+    "C:\\Users\\smart\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.5.0\\system.runtime.compilerservices.unsafe.4.5.0.nupkg.sha512",
+    "C:\\Users\\smart\\.nuget\\packages\\system.text.encoding.codepages\\4.5.0\\system.text.encoding.codepages.4.5.0.nupkg.sha512"
+  ],
+  "logs": []
+}

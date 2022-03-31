@@ -1,0 +1,9 @@
+﻿<Application x:Class="PKAD_STEGANOGRAPHY_SECURITY_REPORT.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:PKAD_STEGANOGRAPHY_SECURITY_REPORT"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+         
+    </Application.Resources>
+</Application>
