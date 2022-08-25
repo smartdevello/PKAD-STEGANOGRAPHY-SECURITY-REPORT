@@ -6,11 +6,12 @@
     <RootNamespace>PKAD_STEGANOGRAPHY_SECURITY_REPORT</RootNamespace>
     <UseWPF>true</UseWPF>
     <UseWindowsForms>true</UseWindowsForms>
-    <Version>1.2</Version>
+    <Version>1.7</Version>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="DotNetCore.NPOI" Version="1.2.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
   </ItemGroup>
 

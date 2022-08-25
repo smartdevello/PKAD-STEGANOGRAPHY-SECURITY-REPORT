@@ -43,6 +43,7 @@ namespace PKAD_STEGANOGRAPHY_SECURITY_REPORT
             if (this.precinct_map == null) return 0;
             else return this.precinct_map.Count();
         }
+
         public List<BallotData> getData()
         {
             return this.data;
@@ -395,9 +396,17 @@ namespace PKAD_STEGANOGRAPHY_SECURITY_REPORT
             string idstring = "";
             if (tmp.Length >= 2)
             {
-                if (tmp[tmp.Length - 2].Trim().ToLower().StartsWith("pallet")) {
-                    idstring = tmp[tmp.Length - 2] + "/" + tmp[tmp.Length - 1];
+                for (int i = 0; i < tmp.Length; i++)
+                {
+                    if (tmp[i].Trim().ToLower().StartsWith("batch"))
+                    {
+                        idstring = tmp[i]; break;
+                    }
                 }
+
+                //if (tmp[tmp.Length - 2].Trim().ToLower().StartsWith("pallet")) {
+                //    idstring = tmp[tmp.Length - 2] + "/" + tmp[tmp.Length - 1];
+                //}
             }
             drawCenteredString(idstring , new Rectangle(800, 980, 800, 120), Brushes.White, titleFont);
 
@@ -554,7 +563,7 @@ namespace PKAD_STEGANOGRAPHY_SECURITY_REPORT
             fillRectangle(Color.White, new Rectangle(1410, initHeight - 110, 250, 250));
             drawImg(redfingerImg, new Point(1435, initHeight - 135), new Size(200, 200));
             count = data.Where(item => item.ooc.ToUpper() == "UNDETERMINED").Count();
-            drawCenteredString(count.ToString(), new Rectangle(1485, initHeight - 185, 150, 150), Brushes.Black, new Font("Arial", 50, FontStyle.Bold, GraphicsUnit.Point));
+
             count = data.Where(item => item.letter != "N" && item.letter !="P" && item.letter != "W" && item.letter != "Z" && item.letter != "NA").Count();
 
             fillRectangle(grayColor, new Rectangle(1570, initHeight - 370, 100, 40));
@@ -567,20 +576,64 @@ namespace PKAD_STEGANOGRAPHY_SECURITY_REPORT
             int basex = 20, basey = initHeight - 120;
             int xstep = 330, ystep = 30;
             int prev_cnt = 0;
-            for (int i = chatIndex * 64; i< Math.Min(sorted_precinct_map.Count(), chatIndex * 64 + 64); i++)
+            int red_finger_count = 0;
+            for (int i =0; i< sorted_precinct_map.Count(); i++)
             {
                 string precinct = sorted_precinct_map.ElementAt(i).Key;
                 count = sorted_precinct_map.ElementAt(i).Value;
                 if (count != prev_cnt) prev_cnt = count;
-
+                int yellow_dot_count = 0;
+                foreach (var dd in data)
+                {
+                    if (dd.precinct_name == precinct && dd.is_color.ToLower() == "color" && dd.mic.ToLower() == "undetected") yellow_dot_count++;
+                }
+                
                 int x = basex + xstep * ((i % 64) / 16);
                 int y = basey - ystep * ((i % 64) % 16);
-                fillRectangle(colorDic[prev_cnt], new Rectangle(x, y + 5, xstep, ystep + 1));
-                drawString(Color.Black,  new Point(x, y), precinct, 10);
-                percent = count * 100 / (double)data.Count();
-                drawString(Color.Black, new Point(x + 200, y), string.Format("{0} - {1:N2}%", count, percent), 10);
-            }
+                if (i>=chatIndex * 64 && i < Math.Min(sorted_precinct_map.Count(), chatIndex * 64 + 64) )
+                {
+                    fillRectangle(colorDic[prev_cnt], new Rectangle(x, y + 5, xstep, ystep + 1));
+                    drawString(Color.Black, new Point(x, y), precinct, 10);
+                    percent = count * 100 / (double)data.Count();
+                    drawString(Color.Black, new Point(x + 200, y), string.Format("{0} - {1:N2}%", count, percent), 10);
+                    if (yellow_dot_count > 0)
+                    {
 
+                        drawFilledCircle(yellowBrush, new Point(x + 150, y), new Size(20, 20));
+                        drawString(Color.Black, new Point(x + 152, y - 2), string.Format("{0}", yellow_dot_count), 10);
+                    }
+                }
+                if (yellow_dot_count > 0)
+                {
+                    red_finger_count++;                    
+                }
+
+            }
+            //for (int i = chatIndex * 64; i< Math.Min(sorted_precinct_map.Count(), chatIndex * 64 + 64); i++)
+            //{
+            //    string precinct = sorted_precinct_map.ElementAt(i).Key;
+            //    count = sorted_precinct_map.ElementAt(i).Value;
+            //    if (count != prev_cnt) prev_cnt = count;
+            //    int yellow_dot_count = 0;
+            //    foreach(var dd in data)
+            //    {
+            //        if (dd.precinct_name == precinct && dd.is_color.ToLower() == "color" && dd.mic.ToLower() == "undetected") yellow_dot_count++;
+            //    }
+
+            //    int x = basex + xstep * ((i % 64) / 16);
+            //    int y = basey - ystep * ((i % 64) % 16);
+            //    fillRectangle(colorDic[prev_cnt], new Rectangle(x, y + 5, xstep, ystep + 1));
+            //    drawString(Color.Black,  new Point(x, y), precinct, 10);
+            //    percent = count * 100 / (double)data.Count();
+            //    drawString(Color.Black, new Point(x + 200, y), string.Format("{0} - {1:N2}%", count, percent), 10);
+            //    if (yellow_dot_count > 0)
+            //    {
+            //        drawFilledCircle(yellowBrush, new Point(x + 150, y), new Size(20, 20));
+            //        drawString(Color.Black, new Point(x + 152, y - 2), string.Format("{0}", yellow_dot_count), 10);
+            //    }
+            //}
+
+            drawCenteredString(red_finger_count.ToString(), new Rectangle(1485, initHeight - 185, 150, 150), Brushes.Black, new Font("Arial", 50, FontStyle.Bold, GraphicsUnit.Point));
 
             int chartCount = 1;
             chartCount = chartCount + sorted_precinct_map.Count() / 64;

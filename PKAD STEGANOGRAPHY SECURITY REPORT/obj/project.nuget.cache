@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "b0+1a1RpQVlDtICRCJ2QPtk9QC9aexClZCToF6uhs4uhZ36GzxkmYAGJ4ddYHPb/WJsiQkc5h44zImDreyGw+g==",
+  "dgSpecHash": "KQMLYA0G94tSzq1QHfyLIgL+bZWKoWGoWI3bACxHydsNRqbWpMHqoMlEkHfONws0h/qaILKWh55PaQ19/z8ZXA==",
   "success": true,
   "projectFilePath": "D:\\My Work\\2022\\3\\PKAD STEGANOGRAPHY SECURITY REPORT\\PKAD STEGANOGRAPHY SECURITY REPORT\\PKAD STEGANOGRAPHY SECURITY REPORT.csproj",
   "expectedPackageFiles": [
@@ -10,6 +10,7 @@
     "C:\\Users\\smart\\.nuget\\packages\\dotnetcore.npoi.openxmlformats\\1.2.3\\dotnetcore.npoi.openxmlformats.1.2.3.nupkg.sha512",
     "C:\\Users\\smart\\.nuget\\packages\\microsoft.netcore.platforms\\2.0.0\\microsoft.netcore.platforms.2.0.0.nupkg.sha512",
     "C:\\Users\\smart\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
+    "C:\\Users\\smart\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\smart\\.nuget\\packages\\sharpziplib\\1.2.0\\sharpziplib.1.2.0.nupkg.sha512",
     "C:\\Users\\smart\\.nuget\\packages\\system.drawing.common\\6.0.0\\system.drawing.common.6.0.0.nupkg.sha512",
     "C:\\Users\\smart\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.5.0\\system.runtime.compilerservices.unsafe.4.5.0.nupkg.sha512",

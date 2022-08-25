@@ -22,6 +22,7 @@ using System.IO;
 using NPOI.XSSF.UserModel;
 using NPOI.HSSF.UserModel;
 using System.ComponentModel;
+using Newtonsoft.Json;
 
 namespace PKAD_STEGANOGRAPHY_SECURITY_REPORT
 {
@@ -33,6 +34,7 @@ namespace PKAD_STEGANOGRAPHY_SECURITY_REPORT
         private Renderer renderer = null;
         private int currentChartIndex = 0;
         private string exportFolderPath = "";
+        private Dictionary<string, string> precinct_id_name_map = null;
         public MainWindow()
         {
             renderer = null;
@@ -72,6 +74,17 @@ namespace PKAD_STEGANOGRAPHY_SECURITY_REPORT
             List<BallotData> data = new List<BallotData>();
 
             string errMsg = "";
+
+            
+            if (precinct_id_name_map == null)
+            {
+                using (StreamReader r = new StreamReader(System.IO.Path.Combine(Directory.GetCurrentDirectory(), "assets", "precincts_list.json")))
+                {
+                    string json = r.ReadToEnd();
+                    precinct_id_name_map = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
+                }
+            }
+
 
             if ( openFileDialog.ShowDialog() == true)
             {
@@ -126,6 +139,25 @@ namespace PKAD_STEGANOGRAPHY_SECURITY_REPORT
                                     fed = (getCellValue(curRow.GetCell(10)) is string) ? curRow.GetCell(10).StringCellValue.Trim() : "",
                                     letter = (getCellValue(curRow.GetCell(11)) is string) ? curRow.GetCell(11).StringCellValue.Trim() : "",
                                 });
+                            } else if (curRow.Cells.Count == 13 )
+                            {
+                                //If header, then continue;
+                                if (i == 1) continue;
+                                data.Add(new BallotData()
+                                {
+                                    filepath = (getCellValue(curRow.GetCell(1)) is string) ? curRow.GetCell(1).StringCellValue.Trim() : "",
+                                    filename = (getCellValue(curRow.GetCell(2)) is string) ? curRow.GetCell(2).StringCellValue.Trim() : "",
+                                    is_color = (getCellValue(curRow.GetCell(3)) is string) ? curRow.GetCell(3).StringCellValue.Trim() : "",
+                                    mic = (getCellValue(curRow.GetCell(4)) is string) ? curRow.GetCell(4).StringCellValue.Trim() : "",
+                                    ooc = (getCellValue(curRow.GetCell(5)) is string) ? curRow.GetCell(5).StringCellValue.Trim() : "",
+                                    code = (getCellValue(curRow.GetCell(6)) is string) ? curRow.GetCell(6).StringCellValue.Trim() : "",
+                                    color = (getCellValue(curRow.GetCell(7)) is string) ? curRow.GetCell(7).StringCellValue.Trim() : "",
+                                    type = (getCellValue(curRow.GetCell(8)) is string) ? curRow.GetCell(8).StringCellValue.Trim() : "",
+                                    precinct = (getCellValue(curRow.GetCell(9)) is string) ? curRow.GetCell(9).StringCellValue.Trim() : "",
+                                    flag = (getCellValue(curRow.GetCell(10)) is string) ? curRow.GetCell(10).StringCellValue.Trim() : "",
+                                    fed = (getCellValue(curRow.GetCell(11)) is string) ? curRow.GetCell(11).StringCellValue.Trim() : "",
+                                    letter = (getCellValue(curRow.GetCell(12)) is string) ? curRow.GetCell(12).StringCellValue.Trim() : "",
+                                });
                             }
                         }
                     }
@@ -151,11 +183,9 @@ namespace PKAD_STEGANOGRAPHY_SECURITY_REPORT
                         if (item.precinct.Length >= 4)
                         {
                             item.precinct_key = item.precinct.Substring(0, 4);
-                            item.precinct_name = item.precinct.Substring(4).Trim();
-                        }
-                        else
-                        {
-                            item.precinct_name = item.precinct;
+                            item.precinct_name = precinct_id_name_map[item.precinct_key];
+                            //item.precinct_name = item.precinct.Substring(4).Trim();
+                            
                         }
 
                         if (precinct_map.ContainsKey(item.precinct_name))
@@ -174,7 +204,11 @@ namespace PKAD_STEGANOGRAPHY_SECURITY_REPORT
         void Render()
         {
             if (renderer == null)
+            {
                 renderer = new Renderer((int)myCanvas.ActualWidth, (int)myCanvas.ActualHeight);
+
+            }
+                
             if (renderer.getDataCount() > 0)
             {
                 renderer.setRenderSize((int)myCanvas.ActualWidth, (int)myCanvas.ActualHeight);

@@ -5,7 +5,7 @@
   },
   "projects": {
     "D:\\My Work\\2022\\3\\PKAD STEGANOGRAPHY SECURITY REPORT\\PKAD STEGANOGRAPHY SECURITY REPORT\\PKAD STEGANOGRAPHY SECURITY REPORT.csproj": {
-      "version": "1.2.0",
+      "version": "1.7.0",
       "restore": {
         "projectUniqueName": "D:\\My Work\\2022\\3\\PKAD STEGANOGRAPHY SECURITY REPORT\\PKAD STEGANOGRAPHY SECURITY REPORT\\PKAD STEGANOGRAPHY SECURITY REPORT.csproj",
         "projectName": "PKAD STEGANOGRAPHY SECURITY REPORT",
@@ -48,6 +48,10 @@
               "target": "Package",
               "version": "[1.2.3, )"
             },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            },
             "System.Drawing.Common": {
               "target": "Package",
               "version": "[6.0.0, )"
@@ -71,7 +75,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }
